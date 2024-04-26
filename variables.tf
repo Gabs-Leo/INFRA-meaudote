@@ -15,3 +15,13 @@ variable "subnet_private_cidrs" {
   type = list(string)
   default = ["10.49.0.0/16", "10.50.0.0/16"]
 }
+
+variable "db_user" {
+  type = string
+  sensitive = true
+}
+
+variable "db_password" {
+  type = string
+  sensitive = true
+}
