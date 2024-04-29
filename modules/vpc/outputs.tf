@@ -10,3 +10,6 @@ output "vpc_self_link" {
 output "private_subnet_1_name" {
   value = google_compute_subnetwork.private[0].name
 }
+output "public_subnet_1_name" {
+  value = google_compute_subnetwork.public[0].name
+}

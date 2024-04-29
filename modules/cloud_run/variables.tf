@@ -21,3 +21,7 @@ variable "subnet_name" {
 variable "container_port" {
   type = string
 }
+
+variable "registry_name" {
+  type = string
+}

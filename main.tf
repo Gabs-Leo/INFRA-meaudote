@@ -17,6 +17,7 @@ module "cloud_run" {
   image = "nginx"
   subnet_name = module.vpc.private_subnet_1_name
   container_port = "80"
+  registry_name = module.artifact_registry.registry_id
 }
 
 module "sql_database" {
@@ -29,4 +30,21 @@ module "sql_database" {
   vpc_id = module.vpc.vpc_id
   db_user = var.db_user
   db_password = var.db_password
+}
+
+module "artifact_registry" {
+  source = "./modules/artifact_registry"
+  region = var.region
+  project = var.project
+  environment = terraform.workspace
+}
+
+module "bastion" {
+  source = "./modules/compute_engine"
+  project = var.project
+  environment = terraform.workspace
+  tags = ["bastion"]
+  subnetwork_id = module.vpc.public_subnet_1_name
+  gce_ssh_user = var.ssh_user
+  gce_ssh_pub_key_file = var.ssh_public_key
 }

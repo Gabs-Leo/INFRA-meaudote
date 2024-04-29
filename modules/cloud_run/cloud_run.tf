@@ -1,11 +1,12 @@
 resource "google_cloud_run_v2_service" "cloud_run" {
   name     = "${var.project}-${var.region}-app-${var.environment}"
   location = var.region
-  client = "cloud-console"
+  client = "gcloud"
   ingress = "INGRESS_TRAFFIC_INTERNAL_ONLY"
+  client_version = "472.0.0"
   template {
     containers {
-      image = var.image
+      image = "${var.region}-docker.pkg.dev/${var.project}/${var.registry_name}/${var.project}-${var.region}-app-${var.environment}"
       #env {
       #  name = "BUCKET"
       #  value = var.bucket
