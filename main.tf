@@ -10,14 +10,13 @@ module "vpc" {
 module "cloud_run" {
   source = "./modules/cloud_run"
   depends_on = [ module.vpc ]
-
   region = var.region
   project = var.project
   environment = terraform.workspace
-  image = "nginx"
   subnet_name = module.vpc.private_subnet_1_name
-  container_port = "80"
   registry_name = module.artifact_registry.registry_id
+  env_variables = var.env_variables
+  database_host = module.sql_database.db_host
 }
 
 module "sql_database" {
