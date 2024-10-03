@@ -6,7 +6,7 @@ resource "google_cloud_run_v2_service" "cloud_run" {
   client_version = "472.0.0"
   template {
     containers {
-      image = "${var.region}-docker.pkg.dev/${var.project}/${var.registry_name}/${var.project}-${var.region}-app-${var.environment}:d5b54c9dc37e5308e82b37f3635de6a130e1d70d"
+      image = "nginx"#"${var.region}-docker.pkg.dev/${var.project}/${var.registry_name}/${var.project}-${var.region}-app-${var.environment}:d5b54c9dc37e5308e82b37f3635de6a130e1d70d"
       dynamic env {
         for_each = var.env_variables
         content {
