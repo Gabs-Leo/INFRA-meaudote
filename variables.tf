@@ -35,3 +35,10 @@ variable "ssh_public_key" {
   type = string
   sensitive = true
 }
+
+variable "env_variables" {
+  type = list(object({
+    key = string
+    value = string
+  }))
+}
