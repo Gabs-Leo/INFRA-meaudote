@@ -1,4 +1,3 @@
-/*
 module "vpc" {
   source = "./modules/vpc"
   subnet_public_cidrs = var.subnet_public_cidrs
@@ -48,7 +47,7 @@ module "bastion" {
   gce_ssh_user = var.ssh_user
   gce_ssh_pub_key_file = var.ssh_public_key
 }
-*/
+
 module "backend_service_account" {
   source = "./modules/service_account"
   project = var.project
