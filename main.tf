@@ -1,13 +1,3 @@
-/*
-module "vpc" {
-  source = "./modules/vpc"
-  subnet_public_cidrs = var.subnet_public_cidrs
-  subnet_private_cidrs = var.subnet_private_cidrs
-  project = var.project
-  environment = terraform.workspace
-  region = var.region
-}
-
 module "cloud_run" {
   source = "./modules/cloud_run"
   depends_on = [ module.vpc ]
@@ -18,6 +8,17 @@ module "cloud_run" {
   registry_name = module.artifact_registry.registry_id
   env_variables = var.env_variables
   database_host = module.sql_database.db_host
+  container_port = "8080"
+  image_name = "${var.region}-docker.pkg.dev/${var.project}/${module.artifact_registry.registry_id}/${var.project}-${var.region}-app-${terraform.workspace}:latest"
+}
+
+module "vpc" {
+  source = "./modules/vpc"
+  subnet_public_cidrs = var.subnet_public_cidrs
+  subnet_private_cidrs = var.subnet_private_cidrs
+  project = var.project
+  environment = terraform.workspace
+  region = var.region
 }
 
 module "sql_database" {
@@ -48,7 +49,7 @@ module "bastion" {
   gce_ssh_user = var.ssh_user
   gce_ssh_pub_key_file = var.ssh_public_key
 }
-*/
+
 module "backend_service_account" {
   source = "./modules/service_account"
   project = var.project

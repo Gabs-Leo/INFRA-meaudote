@@ -3,15 +3,15 @@ resource "google_cloud_run_v2_service" "cloud_run" {
   location = var.region
   client = "gcloud"
   ingress = "INGRESS_TRAFFIC_INTERNAL_ONLY"
-  client_version = "472.0.0"
+
   template {
     containers {
-      image = "nginx"#"${var.region}-docker.pkg.dev/${var.project}/${var.registry_name}/${var.project}-${var.region}-app-${var.environment}:d5b54c9dc37e5308e82b37f3635de6a130e1d70d"
-      dynamic env {
-        for_each = var.env_variables
+      image = var.image_name
+      dynamic "env" {
+        for_each = { for obj in var.env_variables : obj.key => obj.value }
         content {
-          name = env.value.key
-          value = env.value.value
+          name  = env.key
+          value = env.value
         }
       }
       env {

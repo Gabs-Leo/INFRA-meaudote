@@ -1,0 +1,5 @@
+project = "meaudote"
+db_user = "some-user"
+db_password = "some-password"
+ssh_user = "some-user"
+ssh_public_key = "key"
