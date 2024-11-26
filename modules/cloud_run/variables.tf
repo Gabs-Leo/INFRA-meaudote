@@ -28,9 +28,18 @@ variable "env_variables" {
     key = string
     value = string
   }))
+  default = [{
+    key = "TEST",
+    value = "test-var"
+  }]
 }
 
 variable "database_host" {
   type = string
   default = ""
+}
+
+variable "image_name" {
+  type = string
+  default = "nginx"
 }

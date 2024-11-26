@@ -41,4 +41,8 @@ variable "env_variables" {
     key = string
     value = string
   }))
+  default = [{
+    key = "TEST",
+    value = "test-var"
+  }]
 }
