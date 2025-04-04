@@ -2,7 +2,7 @@ resource "google_cloud_run_v2_service" "cloud_run" {
   name     = "${var.project}-${var.region}-app-${var.environment}"
   location = var.region
   client = "gcloud"
-  ingress = "INGRESS_TRAFFIC_INTERNAL_ONLY"
+  ingress = "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER"
 
   template {
     containers {

@@ -1,3 +1,13 @@
+/*
+module "cloud_run_load_balancer" {
+  source = "./modules/load_balancer"
+  project = var.project
+  environment = terraform.workspace
+  cloud_run_name = module.cloud_run.name
+  region = var.region
+  domains = ["dev.gabsleo.com"]
+}
+
 module "cloud_run" {
   source = "./modules/cloud_run"
   depends_on = [ module.vpc ]
@@ -23,7 +33,6 @@ module "vpc" {
 
 module "sql_database" {
   source = "./modules/sql_database"
-  depends_on = [ module.vpc ]
 
   project = var.project
   environment = terraform.workspace
@@ -68,3 +77,4 @@ module "backend_cloud_storage" {
   project = var.project
   environment = terraform.workspace
 }
+*/
